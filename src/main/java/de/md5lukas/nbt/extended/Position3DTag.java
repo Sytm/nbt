@@ -10,15 +10,15 @@ import java.io.IOException;
  * This custom tag is a representation of three coordinates, namely x, y and z.<br><br>
  * <b>Note: Normal nbt software will not understand these custom types and therefore cannot read it properly</b>
  */
-public class Position3D extends Tag {
+public class Position3DTag extends Tag {
 
 	private double x, y, z;
 
-	public Position3D(String name) {
+	public Position3DTag(String name) {
 		super(name);
 	}
 
-	public Position3D(String name, double x, double y, double z) {
+	public Position3DTag(String name, double x, double y, double z) {
 		super(name);
 		this.x = x;
 		this.y = y;
@@ -52,7 +52,7 @@ public class Position3D extends Tag {
 	 * @param x Sets the new x value
 	 * @return This object
 	 */
-	public Position3D setX(double x) {
+	public Position3DTag setX(double x) {
 		this.x = x;
 		return this;
 	}
@@ -70,7 +70,7 @@ public class Position3D extends Tag {
 	 * @param y Sets the new y value
 	 * @return This object
 	 */
-	public Position3D setY(double y) {
+	public Position3DTag setY(double y) {
 		this.y = y;
 		return this;
 	}
@@ -88,7 +88,7 @@ public class Position3D extends Tag {
 	 * @param z Sets the new z value
 	 * @return This object
 	 */
-	public Position3D setZ(double z) {
+	public Position3DTag setZ(double z) {
 		this.z = z;
 		return this;
 	}
@@ -110,6 +110,6 @@ public class Position3D extends Tag {
 
 	@Override
 	public Tag copy() {
-		return new Position3D(getName(), x, y, z);
+		return new Position3DTag(getName(), x, y, z);
 	}
 }
