@@ -86,7 +86,6 @@ fabric.properties
 .idea/workspace.xml
 bigtest.nbt
 hello_world.nbt
-src/main/resources/
 src/test/
 test.nbt
 test_compressed.nbt
