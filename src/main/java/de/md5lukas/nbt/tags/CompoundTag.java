@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * This tag represents a object which can contain multiple named tags of different types
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class CompoundTag extends Tag {
 
 	private Map<String, Tag> tags = new HashMap<>();
@@ -74,7 +74,10 @@ public class CompoundTag extends Tag {
 	 * @param tag  The tag to be added
 	 */
 	public void put(String name, Tag tag) {
-		tags.put(name, tag.setName(name));
+		if (tag == null)
+			tags.remove(name);
+		else
+			tags.put(name, tag.setName(name));
 	}
 
 	/**
