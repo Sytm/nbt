@@ -13,5 +13,3 @@ pipelines:
         script: # Modify the commands below to build your repository
           - bash configure-maven.sh
           - mvn -B deploy # -B batch mode makes Maven less verbose
-          - wget https://bitbucket.org/Md5Lukas/bitbucket-uploader/downloads/bitbucket-uploader-1.0.jar -O bu.jar # Download bitbucket uploader
-          - java -jar bu.jar ${BB_AUTH_STRING} ${BITBUCKET_REPO_OWNER} ${BITBUCKET_REPO_SLUG}
