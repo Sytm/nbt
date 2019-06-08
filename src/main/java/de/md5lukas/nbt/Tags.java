@@ -1,9 +1,7 @@
 package de.md5lukas.nbt;
 
 import de.md5lukas.nbt.exceptions.InvalidTagException;
-import de.md5lukas.nbt.extended.ExtendedStringTag;
-import de.md5lukas.nbt.extended.Position3DTag;
-import de.md5lukas.nbt.extended.StringArrayTag;
+import de.md5lukas.nbt.extended.*;
 import de.md5lukas.nbt.tags.*;
 
 import java.util.HashMap;
@@ -181,8 +179,12 @@ public class Tags {
 	 * Registers all the tags from the package de.md5lukas.nbt.extended
 	 */
 	public static void registerExtendedTags() {
-		registerTag0(Position3DTag::new);
-		registerTag0(ExtendedStringTag::new);
-		registerTag0(StringArrayTag::new);
+		registerTag(Position3DTag::new);
+		registerTag(ExtendedStringTag::new);
+		registerTag(StringArrayTag::new);
+		registerTag(ShortArrayTag::new);
+		registerTag(FloatArrayTag::new);
+		registerTag(DoubleArrayTag::new);
+		registerTag(UUIDTag::new);
 	}
 }
