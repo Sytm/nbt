@@ -12,6 +12,7 @@ import de.md5lukas.nbt.Tags;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * This tag represents a simple byte array
@@ -56,7 +57,7 @@ public class ByteArrayTag extends Tag {
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			ByteArrayTag o = (ByteArrayTag) obj;
-			return ((data == null && o.data == null) || (data != null && data.equals(o.data)));
+			return ((data == null && o.data == null) || (data != null && Arrays.equals(data, o.data)));
 		}
 		return false;
 	}

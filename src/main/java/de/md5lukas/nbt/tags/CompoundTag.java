@@ -529,7 +529,13 @@ public class CompoundTag extends Tag {
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			CompoundTag o = (CompoundTag) obj;
-			return tags.entrySet().equals(o.tags.entrySet());
+			for (Map.Entry<String, Tag> entry : tags.entrySet()) {
+				if (!o.tags.containsKey(entry.getKey()))
+					return false;
+				if (!entry.getValue().equals(o.tags.get(entry.getKey())))
+					return false;
+			}
+			return true;
 		}
 		return false;
 	}
