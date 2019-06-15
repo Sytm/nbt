@@ -2,7 +2,7 @@ package de.md5lukas.nbt.tags;
 
 /**
  * Copyright Mojang AB.
- * 
+ * <p>
  * Don't do evil.
  */
 
@@ -18,25 +18,30 @@ import java.io.IOException;
  */
 public class LongTag extends Tag {
 
-	public long data;
+	private long value;
 
 	public LongTag(String name) {
 		super(name);
 	}
 
-	public LongTag(String name, long data) {
+	public LongTag(long value) {
+		super(null);
+		this.value = value;
+	}
+
+	public LongTag(String name, long value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeLong(data);
+		dos.writeLong(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = dis.readLong();
+		value = dis.readLong();
 	}
 
 	@Override
@@ -46,19 +51,19 @@ public class LongTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public Tag copy() {
-		return new LongTag(getName(), data);
+		return new LongTag(getName(), value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			LongTag o = (LongTag) obj;
-			return data == o.data;
+			return value == o.value;
 		}
 		return false;
 	}
@@ -68,4 +73,11 @@ public class LongTag extends Tag {
 		return "TAG_Long";
 	}
 
+	public long value() {
+		return value;
+	}
+
+	public void value(long value) {
+		this.value = value;
+	}
 }

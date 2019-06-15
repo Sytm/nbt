@@ -22,6 +22,10 @@ public abstract class Tag {
 
 	private String name;
 
+	public Tag(String name) {
+		setName(name);
+	}
+
 	/**
 	 * Writes the data of the tag into the {@link DataOutput}.<br>
 	 * Implementations may only write their data, not their name, because this is handled externally by {@link Tag#writeNamedTag(Tag, DataOutput)}
@@ -62,14 +66,6 @@ public abstract class Tag {
 	 * @return The tag's name
 	 */
 	public abstract String getTagName();
-
-	protected Tag(String name) {
-		if (name == null) {
-			this.name = "";
-		} else {
-			this.name = name;
-		}
-	}
 
 	/**
 	 * Checks if the object is equals to this tag

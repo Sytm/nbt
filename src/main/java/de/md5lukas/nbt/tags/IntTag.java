@@ -18,25 +18,30 @@ import java.io.IOException;
  */
 public class IntTag extends Tag {
 
-	public int data;
+	private int value;
 
 	public IntTag(String name) {
 		super(name);
 	}
 
-	public IntTag(String name, int data) {
+	public IntTag(int value) {
+		super(null);
+		this.value = value;
+	}
+
+	public IntTag(String name, int value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeInt(data);
+		dos.writeInt(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = dis.readInt();
+		value = dis.readInt();
 	}
 
 	@Override
@@ -46,19 +51,19 @@ public class IntTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public Tag copy() {
-		return new IntTag(getName(), data);
+		return new IntTag(getName(), value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			IntTag o = (IntTag) obj;
-			return data == o.data;
+			return value == o.value;
 		}
 		return false;
 	}
@@ -68,4 +73,11 @@ public class IntTag extends Tag {
 		return "TAG_Int";
 	}
 
+	public int value() {
+		return value;
+	}
+
+	public void value(int value) {
+		this.value = value;
+	}
 }

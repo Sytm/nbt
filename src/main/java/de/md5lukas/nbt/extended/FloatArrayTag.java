@@ -12,31 +12,31 @@ import java.util.Arrays;
  */
 public class FloatArrayTag extends Tag {
 
-	public float[] data;
+	private float[] value;
 
 	public FloatArrayTag(String name) {
 		super(name);
 	}
 
-	public FloatArrayTag(String name, float[] data) {
+	public FloatArrayTag(String name, float[] value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeInt(data.length);
-		for (int i = 0; i < data.length; i++) {
-			dos.writeFloat(data[i]);
+		dos.writeInt(value.length);
+		for (int i = 0; i < value.length; i++) {
+			dos.writeFloat(value[i]);
 		}
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
 		int length = dis.readInt();
-		data = new float[length];
+		value = new float[length];
 		for (int i = 0; i < length; i++) {
-			data[i] = dis.readFloat();
+			value[i] = dis.readFloat();
 		}
 	}
 
@@ -47,14 +47,14 @@ public class FloatArrayTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "[" + data.length + " floats]";
+		return "[" + value.length + " floats]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			FloatArrayTag o = (FloatArrayTag) obj;
-			return ((data == null && o.data == null) || (data != null && Arrays.equals(data, o.data)));
+			return ((value == null && o.value == null) || (value != null && Arrays.equals(value, o.value)));
 		}
 		return false;
 	}
@@ -66,8 +66,16 @@ public class FloatArrayTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		float[] cp = new float[data.length];
-		System.arraycopy(data, 0, cp, 0, data.length);
+		float[] cp = new float[value.length];
+		System.arraycopy(value, 0, cp, 0, value.length);
 		return new FloatArrayTag(getName(), cp);
+	}
+
+	public float[] value() {
+		return value;
+	}
+
+	public void value(float[] value) {
+		this.value = value;
 	}
 }

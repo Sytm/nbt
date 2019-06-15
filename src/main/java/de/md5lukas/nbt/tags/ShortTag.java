@@ -18,25 +18,30 @@ import java.io.IOException;
  */
 public class ShortTag extends Tag {
 
-	public short data;
+	private short value;
 
 	public ShortTag(String name) {
 		super(name);
 	}
 
-	public ShortTag(String name, short data) {
+	public ShortTag(short value) {
+		super(null);
+		this.value = value;
+	}
+
+	public ShortTag(String name, short value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeShort(data);
+		dos.writeShort(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = dis.readShort();
+		value = dis.readShort();
 	}
 
 	@Override
@@ -46,19 +51,19 @@ public class ShortTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public Tag copy() {
-		return new ShortTag(getName(), data);
+		return new ShortTag(getName(), value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			ShortTag o = (ShortTag) obj;
-			return data == o.data;
+			return value == o.value;
 		}
 		return false;
 	}
@@ -68,4 +73,12 @@ public class ShortTag extends Tag {
 		return "TAG_Short";
 	}
 
+
+	public short value() {
+		return value;
+	}
+
+	public void value(short value) {
+		this.value = value;
+	}
 }

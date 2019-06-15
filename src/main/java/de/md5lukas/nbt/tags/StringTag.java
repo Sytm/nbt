@@ -18,26 +18,27 @@ import java.io.IOException;
  */
 public class StringTag extends Tag {
 
-	public String data;
+	private String value;
 
 	public StringTag(String name) {
 		super(name);
+		this.value = value;
 	}
 
-	public StringTag(String name, String data) {
+	public StringTag(String name, String value) {
 		super(name);
-		this.data = data;
-		if (data == null) throw new IllegalArgumentException("Empty string not allowed");
+		if (value == null) throw new IllegalArgumentException("Empty string not allowed");
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeUTF(data);
+		dos.writeUTF(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = dis.readUTF();
+		value = dis.readUTF();
 	}
 
 	@Override
@@ -47,19 +48,19 @@ public class StringTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public Tag copy() {
-		return new StringTag(getName(), data);
+		return new StringTag(getName(), value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			StringTag o = (StringTag) obj;
-			return ((data == null && o.data == null) || (data != null && data.equals(o.data)));
+			return ((value == null && o.value == null) || (value != null && value.equals(o.value)));
 		}
 		return false;
 	}
@@ -69,4 +70,11 @@ public class StringTag extends Tag {
 		return "TAG_String";
 	}
 
+	public String value() {
+		return value;
+	}
+
+	public void value(String value) {
+		this.value = value;
+	}
 }

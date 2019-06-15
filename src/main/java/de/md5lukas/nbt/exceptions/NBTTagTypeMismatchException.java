@@ -5,8 +5,12 @@ package de.md5lukas.nbt.exceptions;
  */
 public class NBTTagTypeMismatchException extends RuntimeException {
 
-	public NBTTagTypeMismatchException(String name, String requestedType) {
-		super("Cannot convert to TAG_" + requestedType + " with the value from the tag " + name);
+	public NBTTagTypeMismatchException(String expected, String actual) {
+		super("A " + expected + " was expected, but " + actual + " was present instead");
+	}
+
+	public NBTTagTypeMismatchException(String expected, String actual, String keyName) {
+		super("A " + expected + " was expected, but " + actual + " was present under the key " + keyName);
 	}
 
 	public NBTTagTypeMismatchException(String message) {

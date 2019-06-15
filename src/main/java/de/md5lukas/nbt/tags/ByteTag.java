@@ -2,7 +2,7 @@ package de.md5lukas.nbt.tags;
 
 /**
  * Copyright Mojang AB.
- * 
+ * <p>
  * Don't do evil.
  */
 
@@ -18,25 +18,30 @@ import java.io.IOException;
  */
 public class ByteTag extends Tag {
 
-	public byte data;
+	private byte value;
 
 	public ByteTag(String name) {
 		super(name);
 	}
 
-	public ByteTag(String name, byte data) {
+	public ByteTag(byte value) {
+		super(null);
+		this.value = value;
+	}
+
+	public ByteTag(String name, byte value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeByte(data);
+		dos.writeByte(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = dis.readByte();
+		value = dis.readByte();
 	}
 
 	@Override
@@ -46,14 +51,14 @@ public class ByteTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			ByteTag o = (ByteTag) obj;
-			return data == o.data;
+			return value == o.value;
 		}
 		return false;
 	}
@@ -65,6 +70,14 @@ public class ByteTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		return new ByteTag(getName(), data);
+		return new ByteTag(getName(), value);
+	}
+
+	public byte value() {
+		return value;
+	}
+
+	public void value(byte value) {
+		this.value = value;
 	}
 }

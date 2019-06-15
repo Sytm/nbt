@@ -18,25 +18,30 @@ import java.io.IOException;
  */
 public class DoubleTag extends Tag {
 
-	public double data;
+	private double value;
 
 	public DoubleTag(String name) {
 		super(name);
 	}
 
-	public DoubleTag(String name, double data) {
+	public DoubleTag(double value) {
+		super(null);
+		this.value = value;
+	}
+
+	public DoubleTag(String name, double value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeDouble(data);
+		dos.writeDouble(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = dis.readDouble();
+		value = dis.readDouble();
 	}
 
 	@Override
@@ -46,19 +51,19 @@ public class DoubleTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public Tag copy() {
-		return new DoubleTag(getName(), data);
+		return new DoubleTag(getName(), value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			DoubleTag o = (DoubleTag) obj;
-			return data == o.data;
+			return value == o.value;
 		}
 		return false;
 	}
@@ -68,4 +73,11 @@ public class DoubleTag extends Tag {
 		return "TAG_Double";
 	}
 
+	public double value() {
+		return value;
+	}
+
+	public void value(double value) {
+		this.value = value;
+	}
 }

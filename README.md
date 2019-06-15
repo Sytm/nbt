@@ -40,7 +40,7 @@ NbtIo.write(root, file);
 NbtIo.writeCompressed(root, file);
 ```
 
-And to read the data back from the disk into memory just use the `read()` methods:
+And to read the value back from the disk into memory just use the `read()` methods:
 ```java
 // For uncompressed input:
 CompoundTag root = NbtIo.read(file);
@@ -60,9 +60,9 @@ And to get the string again do this:
 ```java
 String value = root.getString("key");
 // or
-String value = ((StringTag) root.get("key")).data;
+String value = ((StringTag) root.get("key")).value;
 ```
-For other types this works the same way.<br>
+For other types this works the same way.
 **IMPORTANT:** The tags found in the package `de.md5lukas.nbt.extended` are custom tags which normal nbt software can't understand and because of this they first need to be registered like this:
 ```java
 Tags.registerExtendedTags();

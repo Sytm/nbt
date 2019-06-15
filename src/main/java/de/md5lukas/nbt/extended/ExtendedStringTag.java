@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class ExtendedStringTag extends Tag {
 
-	public String data;
+	private String value;
 
 	public ExtendedStringTag(String name) {
 		super(name);
@@ -21,22 +21,22 @@ public class ExtendedStringTag extends Tag {
 
 	public ExtendedStringTag(String name, String value) {
 		super(name);
-		data = value;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		writeString(dos, data);
+		writeString(dos, value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = readString(dis);
+		value = readString(dis);
 	}
 
 	@Override
 	public String toString() {
-		return data;
+		return value;
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class ExtendedStringTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		return new ExtendedStringTag(getName(), data);
+		return new ExtendedStringTag(getName(), value);
 	}
 
 	public static void writeString(DataOutput dos, String string) throws IOException {
@@ -65,5 +65,13 @@ public class ExtendedStringTag extends Tag {
 		byte[] bytes = new byte[length];
 		dis.readFully(bytes);
 		return new String(bytes, StandardCharsets.UTF_8);
+	}
+
+	public String value() {
+		return value;
+	}
+
+	public void value(String value) {
+		this.value = value;
 	}
 }

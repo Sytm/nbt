@@ -2,7 +2,7 @@ package de.md5lukas.nbt.tags;
 
 /**
  * Copyright Mojang AB.
- * 
+ * <p>
  * Don't do evil.
  */
 
@@ -18,23 +18,28 @@ import java.io.IOException;
  */
 public class FloatTag extends Tag {
 
-	public float data;
+	private float value;
 
 	public FloatTag(String name) {
 		super(name);
 	}
 
-	public FloatTag(String name, float data) {
+	public FloatTag(float value) {
+		super(null);
+		this.value = value;
+	}
+
+	public FloatTag(String name, float value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	public void write(DataOutput dos) throws IOException {
-		dos.writeFloat(data);
+		dos.writeFloat(value);
 	}
 
 	public void load(DataInput dis) throws IOException {
-		data = dis.readFloat();
+		value = dis.readFloat();
 	}
 
 	public byte getId() {
@@ -42,19 +47,19 @@ public class FloatTag extends Tag {
 	}
 
 	public String toString() {
-		return "" + data;
+		return "" + value;
 	}
 
 	@Override
 	public Tag copy() {
-		return new FloatTag(getName(), data);
+		return new FloatTag(getName(), value);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			FloatTag o = (FloatTag) obj;
-			return data == o.data;
+			return value == o.value;
 		}
 		return false;
 	}
@@ -64,4 +69,11 @@ public class FloatTag extends Tag {
 		return "TAG_Float";
 	}
 
+	public float value() {
+		return value;
+	}
+
+	public void value(float value) {
+		this.value = value;
+	}
 }

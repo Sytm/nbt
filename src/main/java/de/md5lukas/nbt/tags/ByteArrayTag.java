@@ -19,28 +19,33 @@ import java.util.Arrays;
  */
 public class ByteArrayTag extends Tag {
 
-	public byte[] data;
+	private byte[] value;
 
 	public ByteArrayTag(String name) {
 		super(name);
 	}
 
-	public ByteArrayTag(String name, byte[] data) {
+	public ByteArrayTag(byte[] value) {
+		super(null);
+		this.value = value;
+	}
+
+	public ByteArrayTag(String name, byte[] value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeInt(data.length);
-		dos.write(data);
+		dos.writeInt(value.length);
+		dos.write(value);
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
 		int length = dis.readInt();
-		data = new byte[length];
-		dis.readFully(data);
+		value = new byte[length];
+		dis.readFully(value);
 	}
 
 	@Override
@@ -50,14 +55,14 @@ public class ByteArrayTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "[" + data.length + " bytes]";
+		return "[" + value.length + " bytes]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			ByteArrayTag o = (ByteArrayTag) obj;
-			return ((data == null && o.data == null) || (data != null && Arrays.equals(data, o.data)));
+			return ((value == null && o.value == null) || (value != null && Arrays.equals(value, o.value)));
 		}
 		return false;
 	}
@@ -69,8 +74,16 @@ public class ByteArrayTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		byte[] cp = new byte[data.length];
-		System.arraycopy(data, 0, cp, 0, data.length);
+		byte[] cp = new byte[value.length];
+		System.arraycopy(value, 0, cp, 0, value.length);
 		return new ByteArrayTag(getName(), cp);
+	}
+
+	public byte[] value() {
+		return value;
+	}
+
+	public void value(byte[] value) {
+		this.value = value;
 	}
 }

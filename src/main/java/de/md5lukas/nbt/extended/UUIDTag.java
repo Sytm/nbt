@@ -9,31 +9,31 @@ import java.util.UUID;
 
 public class UUIDTag extends Tag {
 
-	public UUID data;
+	public UUID value;
 
 	public UUIDTag(String name) {
 		super(name);
 	}
 
-	public UUIDTag(String name, UUID data) {
+	public UUIDTag(String name, UUID value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeLong(data.getMostSignificantBits());
-		dos.writeLong(data.getLeastSignificantBits());
+		dos.writeLong(value.getMostSignificantBits());
+		dos.writeLong(value.getLeastSignificantBits());
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
-		data = new UUID(dis.readLong(), dis.readLong());
+		value = new UUID(dis.readLong(), dis.readLong());
 	}
 
 	@Override
 	public String toString() {
-		return data.toString();
+		return value.toString();
 	}
 
 	@Override
@@ -48,6 +48,14 @@ public class UUIDTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		return new UUIDTag(getName(), data);
+		return new UUIDTag(getName(), value);
+	}
+
+	public UUID value() {
+		return value;
+	}
+
+	public void value(UUID value) {
+		this.value = value;
 	}
 }

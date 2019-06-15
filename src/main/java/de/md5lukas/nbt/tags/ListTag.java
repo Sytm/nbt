@@ -23,12 +23,18 @@ public class ListTag extends Tag {
 	private List<Tag> list = new ArrayList<>();
 	private byte type;
 
-	public ListTag() {
-		super("");
-	}
-
 	public ListTag(String name) {
 		super(name);
+	}
+
+	public ListTag(List<Tag> value) {
+		super(null);
+		setList(value);
+	}
+
+	public ListTag(String name, List<Tag> value) {
+		super(name);
+		setList(value);
 	}
 
 	@Override

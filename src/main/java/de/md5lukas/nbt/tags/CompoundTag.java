@@ -28,7 +28,7 @@ public class CompoundTag extends Tag {
 	private Map<String, Tag> tags = new HashMap<>();
 
 	public CompoundTag() {
-		super("");
+		super(null);
 	}
 
 	public CompoundTag(String name) {
@@ -304,9 +304,9 @@ public class CompoundTag extends Tag {
 	public byte getByte(String name) {
 		if (!tags.containsKey(name)) return (byte) 0;
 		if (tags.get(name) instanceof ByteTag)
-			return ((ByteTag) tags.get(name)).data;
+			return ((ByteTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Byte");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Byte), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -319,9 +319,9 @@ public class CompoundTag extends Tag {
 	public short getShort(String name) {
 		if (!tags.containsKey(name)) return (short) 0;
 		if (tags.get(name) instanceof ShortTag)
-			return ((ShortTag) tags.get(name)).data;
+			return ((ShortTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Short");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Short), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -334,9 +334,9 @@ public class CompoundTag extends Tag {
 	public int getInt(String name) {
 		if (!tags.containsKey(name)) return 0;
 		if (tags.get(name) instanceof IntTag)
-			return ((IntTag) tags.get(name)).data;
+			return ((IntTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Int");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Int), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -349,9 +349,9 @@ public class CompoundTag extends Tag {
 	public long getLong(String name) {
 		if (!tags.containsKey(name)) return (long) 0;
 		if (tags.get(name) instanceof LongTag)
-			return ((LongTag) tags.get(name)).data;
+			return ((LongTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Long");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Long), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -364,9 +364,9 @@ public class CompoundTag extends Tag {
 	public float getFloat(String name) {
 		if (!tags.containsKey(name)) return (float) 0;
 		if (tags.get(name) instanceof FloatTag)
-			return ((FloatTag) tags.get(name)).data;
+			return ((FloatTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Float");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Float), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -379,9 +379,9 @@ public class CompoundTag extends Tag {
 	public double getDouble(String name) {
 		if (!tags.containsKey(name)) return (double) 0;
 		if (tags.get(name) instanceof DoubleTag)
-			return ((DoubleTag) tags.get(name)).data;
+			return ((DoubleTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Double");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Double), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -394,9 +394,9 @@ public class CompoundTag extends Tag {
 	public String getString(String name) {
 		if (!tags.containsKey(name)) return "";
 		if (tags.get(name) instanceof StringTag)
-			return ((StringTag) tags.get(name)).data;
+			return ((StringTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "String");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_String), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -409,9 +409,9 @@ public class CompoundTag extends Tag {
 	public byte[] getByteArray(String name) {
 		if (!tags.containsKey(name)) return new byte[0];
 		if (tags.get(name) instanceof ByteArrayTag)
-			return ((ByteArrayTag) tags.get(name)).data;
+			return ((ByteArrayTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Byte_Array");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Byte_Array), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -424,9 +424,9 @@ public class CompoundTag extends Tag {
 	public int[] getIntArray(String name) {
 		if (!tags.containsKey(name)) return new int[0];
 		if (tags.get(name) instanceof IntArrayTag)
-			return ((IntArrayTag) tags.get(name)).data;
+			return ((IntArrayTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Int_Array");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Int_Array), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -439,9 +439,9 @@ public class CompoundTag extends Tag {
 	public long[] getLongArray(String name) {
 		if (!tags.containsKey(name)) return new long[0];
 		if (tags.get(name) instanceof LongArrayTag)
-			return ((LongArrayTag) tags.get(name)).data;
+			return ((LongArrayTag) tags.get(name)).value();
 		else
-			throw new NBTTagTypeMismatchException(name, "Long_Array");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Long_Array), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -456,7 +456,7 @@ public class CompoundTag extends Tag {
 		if (tags.get(name) instanceof CompoundTag)
 			return (CompoundTag) tags.get(name);
 		else
-			throw new NBTTagTypeMismatchException(name, "Compound");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_Compound), tags.get(name).getTagName(), name);
 	}
 
 	/**
@@ -471,7 +471,7 @@ public class CompoundTag extends Tag {
 		if (tags.get(name) instanceof ListTag)
 			return (ListTag) tags.get(name);
 		else
-			throw new NBTTagTypeMismatchException(name, "List");
+			throw new NBTTagTypeMismatchException(Tags.getTagName(Tags.TAG_List), tags.get(name).getTagName(), name);
 	}
 
 	/**

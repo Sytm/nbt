@@ -12,31 +12,31 @@ import java.util.Arrays;
  */
 public class StringArrayTag extends Tag {
 
-	public String[] data;
+	private String[] value;
 
 	public StringArrayTag(String name) {
 		super(name);
 	}
 
-	public StringArrayTag(String name, String[] data) {
+	public StringArrayTag(String name, String[] value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeInt(data.length);
-		for (int i = 0; i < data.length; i++) {
-			ExtendedStringTag.writeString(dos, data[i]);
+		dos.writeInt(value.length);
+		for (int i = 0; i < value.length; i++) {
+			ExtendedStringTag.writeString(dos, value[i]);
 		}
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
 		int length = dis.readInt();
-		data = new String[length];
+		value = new String[length];
 		for (int i = 0; i < length; i++) {
-			data[i] = ExtendedStringTag.readString(dis);
+			value[i] = ExtendedStringTag.readString(dis);
 		}
 	}
 
@@ -47,14 +47,14 @@ public class StringArrayTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "[" + data.length + " strings]";
+		return "[" + value.length + " strings]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			StringArrayTag o = (StringArrayTag) obj;
-			return ((data == null && o.data == null) || (data != null && Arrays.equals(data, o.data)));
+			return ((value == null && o.value == null) || (value != null && Arrays.equals(value, o.value)));
 		}
 		return false;
 	}
@@ -66,8 +66,16 @@ public class StringArrayTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		String[] cp = new String[data.length];
-		System.arraycopy(data, 0, cp, 0, data.length);
+		String[] cp = new String[value.length];
+		System.arraycopy(value, 0, cp, 0, value.length);
 		return new StringArrayTag(getName(), cp);
+	}
+
+	public String[] value() {
+		return value;
+	}
+
+	public void value(String[] value) {
+		this.value = value;
 	}
 }

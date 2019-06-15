@@ -2,7 +2,7 @@ package de.md5lukas.nbt.tags;
 
 /**
  * Copyright Mojang AB.
- * 
+ * <p>
  * Don't do evil.
  */
 
@@ -19,31 +19,36 @@ import java.util.Arrays;
  */
 public class IntArrayTag extends Tag {
 
-	public int[] data;
+	private int[] value;
 
 	public IntArrayTag(String name) {
 		super(name);
 	}
 
-	public IntArrayTag(String name, int[] data) {
+	public IntArrayTag(int[] value) {
+		super(null);
+		this.value = value;
+	}
+
+	public IntArrayTag(String name, int[] value) {
 		super(name);
-		this.data = data;
+		this.value = value;
 	}
 
 	@Override
 	public void write(DataOutput dos) throws IOException {
-		dos.writeInt(data.length);
-		for (int i = 0; i < data.length; i++) {
-			dos.writeInt(data[i]);
+		dos.writeInt(value.length);
+		for (int i = 0; i < value.length; i++) {
+			dos.writeInt(value[i]);
 		}
 	}
 
 	@Override
 	public void load(DataInput dis) throws IOException {
 		int length = dis.readInt();
-		data = new int[length];
+		value = new int[length];
 		for (int i = 0; i < length; i++) {
-			data[i] = dis.readInt();
+			value[i] = dis.readInt();
 		}
 	}
 
@@ -54,14 +59,14 @@ public class IntArrayTag extends Tag {
 
 	@Override
 	public String toString() {
-		return "[" + data.length + " ints]";
+		return "[" + value.length + " ints]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			IntArrayTag o = (IntArrayTag) obj;
-			return ((data == null && o.data == null) || (data != null && Arrays.equals(data, o.data)));
+			return ((value == null && o.value == null) || (value != null && Arrays.equals(value, o.value)));
 		}
 		return false;
 	}
@@ -73,8 +78,16 @@ public class IntArrayTag extends Tag {
 
 	@Override
 	public Tag copy() {
-		int[] cp = new int[data.length];
-		System.arraycopy(data, 0, cp, 0, data.length);
+		int[] cp = new int[value.length];
+		System.arraycopy(value, 0, cp, 0, value.length);
 		return new IntArrayTag(getName(), cp);
+	}
+
+	public int[] value() {
+		return value;
+	}
+
+	public void value(int[] value) {
+		this.value = value;
 	}
 }
