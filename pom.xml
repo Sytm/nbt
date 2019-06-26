@@ -17,11 +17,11 @@
     <distributionManagement>
         <repository>
             <id>sytm-nexus</id>
-            <url>http://sytm.de:8081/repository/maven-releases/</url>
+            <url>https://repo.sytm.de/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
             <id>sytm-nexus</id>
-            <url>http://sytm.de:8081/repository/maven-snapshots/</url>
+            <url>https://repo.sytm.de/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
