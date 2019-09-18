@@ -9,7 +9,7 @@ Just add this repository and dependency to your project's pom and you are good t
         ...
         <repository>
             <id>sytm-nexus</id>
-            <url>http://sytm.de:8081/repository/maven-releases/</url>
+            <url>https://repo.sytm.de/repository/maven-hosted/</url>
         </repository>
         ...
     </repositories>
@@ -18,7 +18,7 @@ Just add this repository and dependency to your project's pom and you are good t
         <dependency>
             <groupId>de.md5lukas</groupId>
             <artifactId>nbt</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
     ...
