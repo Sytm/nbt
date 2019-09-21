@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * This tag represents a object which can contain multiple named tags of different types
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({ "unused", "WeakerAccess" })
 public class CompoundTag extends Tag {
 
 	private Map<String, Tag> tags = new HashMap<>();
@@ -56,6 +56,7 @@ public class CompoundTag extends Tag {
 	 * Get all values contained by this tag
 	 *
 	 * @return The values
+	 *
 	 * @see HashMap#values() Is used to retrieve this collection
 	 */
 	public Collection<Tag> getAllTags() {
@@ -81,10 +82,20 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
+	 * Removes a tag with the given name from this compound tag if present
+	 *
+	 * @param name The name of the tag to remove
+	 */
+	public void remove(String name) {
+		tags.remove(name);
+	}
+
+	/**
 	 * Adds a byte tag to this compound tag
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public ByteTag putByte(String name, byte value) {
@@ -98,6 +109,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public ShortTag putShort(String name, short value) {
@@ -111,6 +123,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public IntTag putInt(String name, int value) {
@@ -124,6 +137,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public LongTag putLong(String name, long value) {
@@ -137,6 +151,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public FloatTag putFloat(String name, float value) {
@@ -150,6 +165,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public DoubleTag putDouble(String name, double value) {
@@ -163,6 +179,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public StringTag putString(String name, String value) {
@@ -176,6 +193,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public ByteArrayTag putByteArray(String name, byte[] value) {
@@ -189,6 +207,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public IntArrayTag putIntArray(String name, int[] value) {
@@ -202,6 +221,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public LongArrayTag putLongArray(String name, long[] value) {
@@ -214,6 +234,7 @@ public class CompoundTag extends Tag {
 	 * Adds a list tag to this compound tag
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The added tag
 	 */
 	public ListTag putListTag(String name) {
@@ -227,6 +248,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The values to be added to the tag
+	 *
 	 * @return The added tag
 	 */
 	public ListTag putListTag(String name, List<Tag> value) {
@@ -241,6 +263,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The added tag
 	 */
 	public CompoundTag putCompound(String name, CompoundTag value) {
@@ -252,6 +275,7 @@ public class CompoundTag extends Tag {
 	 * Create and adds a compound tag to this compound tag
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The added tag
 	 */
 	public CompoundTag putCompound(String name) {
@@ -266,6 +290,7 @@ public class CompoundTag extends Tag {
 	 *
 	 * @param name  The name of the tag
 	 * @param value The value of the tag
+	 *
 	 * @return The byte tag created to represent the boolean
 	 */
 	public ByteTag putBoolean(String name, boolean value) {
@@ -276,7 +301,9 @@ public class CompoundTag extends Tag {
 	 * Retrieves the tag stored under the provided name
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The tag stored under that name or if not present <code>null</code>
+	 *
 	 * @see HashMap#get(Object) The method used to retrieve the tag
 	 */
 	public Tag get(String name) {
@@ -287,7 +314,9 @@ public class CompoundTag extends Tag {
 	 * Checks if this compound tag contains a tag with the provided name
 	 *
 	 * @param name The name to check for
+	 *
 	 * @return <code>true</code> if a tag is present with that name
+	 *
 	 * @see HashMap#containsKey(Object) Is used to check if this compound tag contains a tag
 	 */
 	public boolean contains(String name) {
@@ -295,10 +324,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored <code>0</code> is returned
+	 * Retrieves the byte stored under the provided name. If there is no byte stored, <code>0</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or <code>0</code> if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a byte tag
 	 */
 	public byte getByte(String name) {
@@ -310,10 +341,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored <code>0</code> is returned
+	 * Retrieves the short stored under the provided name. If there is no short stored, <code>0</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or <code>0</code> if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a short tag
 	 */
 	public short getShort(String name) {
@@ -325,10 +358,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored <code>0</code> is returned
+	 * Retrieves the integer stored under the provided name. If there is no integer stored, <code>0</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or <code>0</code> if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a int tag
 	 */
 	public int getInt(String name) {
@@ -340,10 +375,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored <code>0</code> is returned
+	 * Retrieves the long stored under the provided name. If there is no long stored, <code>0</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or <code>0</code> if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a long tag
 	 */
 	public long getLong(String name) {
@@ -355,10 +392,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored <code>0</code> is returned
+	 * Retrieves the float stored under the provided name. If there is no float stored, <code>0</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or <code>0</code> if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a float tag
 	 */
 	public float getFloat(String name) {
@@ -370,10 +409,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored <code>0</code> is returned
+	 * Retrieves the double stored under the provided name. If there is no double stored, <code>0</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or <code>0</code> if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a double tag
 	 */
 	public double getDouble(String name) {
@@ -385,10 +426,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored an empty string is returned
+	 * Retrieves the string stored under the provided name. If there is no string stored, an empty string is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or an empty string if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a string tag
 	 */
 	public String getString(String name) {
@@ -400,10 +443,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored an empty array is returned
+	 * Retrieves the byte array stored under the provided name. If there is no byte array stored, a byte array of size 0 is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or an empty array if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a byte array tag
 	 */
 	public byte[] getByteArray(String name) {
@@ -415,10 +460,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored an empty array is returned
+	 * Retrieves the integer array stored under the provided name. If there is no integer array stored, a integer array of size 0 is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or an empty array if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a int array tag
 	 */
 	public int[] getIntArray(String name) {
@@ -430,10 +477,12 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored an empty array is returned
+	 * Retrieves the long array stored under the provided name. If there is no long array stored, a long array of size 0 is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or an empty array if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a long array tag
 	 */
 	public long[] getLongArray(String name) {
@@ -445,14 +494,21 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored an empty compound tag is returned
+	 * Retrieves the compound tag stored under the provided name.
+	 * If there is no compound tag stored, a new compound tag is returned and added to this compound tag
 	 *
 	 * @param name The name of the tag
-	 * @return The value stored under the name or an empty compound tag if not present
+	 *
+	 * @return The value stored under the name or a new compound tag if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a compound tag
 	 */
 	public CompoundTag getCompound(String name) {
-		if (!tags.containsKey(name)) return new CompoundTag(name);
+		if (!tags.containsKey(name)) {
+			CompoundTag created = new CompoundTag(name);
+			tags.put(name, created);
+			return created;
+		}
 		if (tags.get(name) instanceof CompoundTag)
 			return (CompoundTag) tags.get(name);
 		else
@@ -460,14 +516,21 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Retrieves the value stored under the provided name. If there is no value stored an empty list tag is returned
+	 * Retrieves the list tag stored under the provided name.
+	 * If there is no list tag stored, a new list tag is returned and added to this compound tag
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return The value stored under the name or an empty list tag if not present
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a list tag
 	 */
 	public ListTag getList(String name) {
-		if (!tags.containsKey(name)) return new ListTag(name);
+		if (!tags.containsKey(name)) {
+			ListTag created = new ListTag(name);
+			tags.put(name, created);
+			return created;
+		}
 		if (tags.get(name) instanceof ListTag)
 			return (ListTag) tags.get(name);
 		else
@@ -475,10 +538,13 @@ public class CompoundTag extends Tag {
 	}
 
 	/**
-	 * Checks if the byte tag is not <code>0</code> and returns <code>true</code>,<code>false</code> otherwise. If the byte tag is not present <code>false</code> is returned
+	 * Checks if the byte tag is not <code>0</code> and returns <code>true</code>,<code>false</code> otherwise.
+	 * If the byte tag is not present <code>false</code> is returned
 	 *
 	 * @param name The name of the tag
+	 *
 	 * @return <code>true</code> if the byte tag is not <code>0</code>
+	 *
 	 * @throws NBTTagTypeMismatchException If the tag present is not a byte tag
 	 */
 	public boolean getBoolean(String name) {

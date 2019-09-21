@@ -18,7 +18,7 @@ Just add this repository and dependency to your project's pom and you are good t
         <dependency>
             <groupId>de.md5lukas</groupId>
             <artifactId>nbt</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.2</version>
         </dependency>
     </dependencies>
     ...
