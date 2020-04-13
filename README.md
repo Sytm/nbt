@@ -1,4 +1,4 @@
-# NBT-Lib
+# NBT-Lib [![Build Status](https://drone.sytm.de/api/badges/Sytm/nbt/status.svg)](https://drone.sytm.de/Sytm/nbt)
 ## How to add to your project
 
 Just add this repository and dependency to your project's pom and you are good to go:
